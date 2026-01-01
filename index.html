@@ -5,179 +5,199 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Peretzinho · נדב פרץ</title>
   <meta name="description" content="Peretzinho (נדב פרץ) – בניית אתרים ומערכות תוכן. פרויקט מוביל: אתר יערת העמק – מערכת דיגיטלית לבית ספר עם עדכון בזמן אמת." />
-  <meta name="theme-color" content="#0b1020" />
+  <meta name="theme-color" content="#0B1020" />
 
   <style>
-    /* ===== FIX select dropdown dark/light ===== */
-    select { color: var(--text); background-color: var(--bg); }
-    select option { background-color: #ffffff; color: #0c1426; }
-    [data-theme="dark"] select option { background-color: #ffffff; color: #000000; }
-
-    /* =========================
-       THEME (Dark/Light)
-    ========================= */
     :root{
-      --bg:#0b1020;
-      --bg2:#070a12;
-      --card: rgba(255,255,255,.06);
-      --card2: rgba(255,255,255,.03);
-      --text:#eef3ff;
-      --muted:#a6b3d0;
-      --muted2:#93a3c7;
-      --line: rgba(255,255,255,.11);
-      --shadow: 0 22px 80px rgba(0,0,0,.55);
-      --r: 26px;
-      --r2: 16px;
-      --max: 1180px;
+      --bg:#0B1020; --bg2:#070A12;
+      --card: rgba(255,255,255,.06); --card2: rgba(255,255,255,.03);
+      --text:#EEF3FF; --muted:#A6B3D0; --line: rgba(255,255,255,.12);
+      --shadow: 0 22px 70px rgba(0,0,0,.55);
+      --r:24px; --r2:16px; --max:1120px; --topH:70px;
 
-      --a1:#5ef7c7; /* mint */
-      --a2:#7aa7ff; /* blue */
-      --a3:#ff5d84; /* pink */
-      --ok:#7CFF6B;
-      --cyan:#00D4FF;
+      --a1:#5EF7C7; --a2:#7AA7FF; --a3:#FF5D84;
+      --ok:#7CFF6B; --cyan:#00D4FF;
 
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
       --sans: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
     }
-
     [data-theme="light"]{
-      --bg:#f7f8fc;
-      --bg2:#eef2ff;
-      --card: rgba(16,24,40,.06);
-      --card2: rgba(16,24,40,.04);
-      --text:#0c1426;
-      --muted:#33415f;
-      --muted2:#4a5b7d;
-      --line: rgba(16,24,40,.12);
-      --shadow: 0 24px 70px rgba(2,8,20,.16);
+      --bg:#F7F8FC; --bg2:#EEF2FF;
+      --card: rgba(16,24,40,.06); --card2: rgba(16,24,40,.04);
+      --text:#0C1426; --muted:#3B4C6A; --line: rgba(16,24,40,.12);
+      --shadow: 0 20px 60px rgba(2,8,20,.18);
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      font-family: var(--sans);
-      color: var(--text);
+      font-family:var(--sans);
+      color:var(--text);
       background:
-        radial-gradient(1100px 700px at 10% 12%, color-mix(in srgb, var(--a1) 16%, transparent), transparent 60%),
-        radial-gradient(900px 650px at 90% 0%, color-mix(in srgb, var(--a2) 18%, transparent), transparent 55%),
-        radial-gradient(900px 700px at 55% 100%, color-mix(in srgb, var(--a3) 10%, transparent), transparent 60%),
+        radial-gradient(1000px 650px at 15% 10%, rgba(94,247,199,.14), transparent 60%),
+        radial-gradient(900px 650px at 90% 0%, rgba(122,167,255,.18), transparent 55%),
+        radial-gradient(900px 650px at 55% 105%, rgba(255,93,132,.12), transparent 60%),
         linear-gradient(180deg, var(--bg), var(--bg2));
       overflow-x:hidden;
     }
     a{color:inherit; text-decoration:none}
-    button{font-family:inherit}
+    button,input,select,textarea{font-family:inherit}
+    img{max-width:100%; display:block}
     .hidden{display:none !important}
 
-    /* =========================
-       WOW BACKDROP
-    ========================= */
     .grain{
       pointer-events:none;
       position:fixed; inset:0; z-index:0;
-      background-image:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E");
-      mix-blend-mode: overlay;
-      opacity:.22;
-    }
-    .orb{
-      position:fixed; z-index:0;
-      width:520px; height:520px; border-radius:999px;
-      filter: blur(44px);
-      opacity:.16;
-      pointer-events:none;
-      animation: float 9s ease-in-out infinite;
-    }
-    .o1{right:-160px; top:-140px; background: radial-gradient(circle at 30% 30%, var(--a2), transparent 62%);}
-    .o2{left:-160px; bottom:-220px; background: radial-gradient(circle at 30% 30%, var(--a1), transparent 62%); animation-duration: 11s;}
-    .o3{left:42%; top:65%; width:420px; height:420px; background: radial-gradient(circle at 30% 30%, var(--a3), transparent 62%); animation-duration: 13s;}
-    @keyframes float{
-      0%,100%{transform: translateY(0) translateX(0) scale(1)}
-      50%{transform: translateY(-18px) translateX(10px) scale(1.02)}
+      opacity:.16; mix-blend-mode: overlay;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.26'/%3E%3C/svg%3E");
     }
     .layer{position:relative; z-index:1}
 
-    /* =========================
-       TOPBAR
-    ========================= */
+    /* ===== TOP BAR (default) ===== */
     .top{
-      position:sticky; top:0; z-index:60;
+      position:sticky; top:0; z-index:50;
+      height: var(--topH);
       backdrop-filter: blur(14px);
-      background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 88%, transparent), color-mix(in srgb, var(--bg) 55%, transparent));
-      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(11,16,32,.72), rgba(11,16,32,.38));
+      border-bottom:1px solid var(--line);
+    }
+    [data-theme="light"] .top{
+      background: linear-gradient(180deg, rgba(247,248,252,.78), rgba(247,248,252,.46));
     }
     .top .in{
-      max-width:var(--max); margin:0 auto; padding: 14px 18px;
-      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      max-width:var(--max);
+      margin:0 auto;
+      height:100%;
+      padding: 0 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
     }
-    .brand{display:flex; align-items:center; gap:10px}
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      min-width: 200px;
+    }
     .logo{
       width:44px;height:44px;border-radius: 16px;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(255,255,255,.25), transparent 55%),
-        linear-gradient(135deg, var(--a1), var(--a2));
-      box-shadow: 0 18px 55px color-mix(in srgb, var(--a1) 22%, transparent),
-                  0 18px 55px color-mix(in srgb, var(--a2) 18%, transparent);
+      background: linear-gradient(135deg, var(--a1), var(--a2));
+      box-shadow: 0 14px 40px rgba(122,167,255,.18), 0 14px 40px rgba(94,247,199,.14);
       position:relative; overflow:hidden;
+      flex: 0 0 auto;
     }
     .logo:after{
-      content:""; position:absolute; inset:-25%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.33), transparent);
-      transform: rotate(18deg);
-      animation: shine 3.4s linear infinite;
+      content:"";
+      position:absolute; inset:-30%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
+      transform: rotate(18deg) translateX(-140%);
+      animation: shine 3.8s linear infinite;
     }
     @keyframes shine{
-      0%{transform: translateX(-120%) rotate(18deg)}
-      100%{transform: translateX(120%) rotate(18deg)}
+      0%{transform: rotate(18deg) translateX(-140%)}
+      100%{transform: rotate(18deg) translateX(140%)}
     }
     .bname{display:flex; flex-direction:column; line-height:1.05}
-    .bname b{font-size:15px; letter-spacing:.2px}
+    .bname b{font-size:14.5px; letter-spacing:.2px}
     .bname span{font-size:12px; color:var(--muted)}
 
-    .nav{
-      display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end;
-    }
+    .nav{display:flex; align-items:center; gap:10px}
+    .links{display:flex; align-items:center; gap:10px}
+
     .pill{
-      padding: 9px 12px;
+      padding: 10px 12px;
       border-radius: 999px;
       border: 1px solid var(--line);
-      background: color-mix(in srgb, var(--card2) 92%, transparent);
+      background: rgba(255,255,255,.04);
       color: var(--muted);
-      transition: transform .2s ease, border-color .2s ease, background .2s ease, color .2s ease;
       font-size: 13px;
+      transition: transform .18s ease, border-color .2s ease, background .2s ease, color .2s ease;
       white-space:nowrap;
     }
+    [data-theme="light"] .pill{ background: rgba(16,24,40,.04); }
     .pill:hover{
       transform: translateY(-1px);
-      border-color: color-mix(in srgb, var(--a1) 35%, var(--line));
-      background: color-mix(in srgb, var(--a1) 10%, var(--card2));
+      border-color: rgba(94,247,199,.28);
+      background: rgba(94,247,199,.08);
       color: var(--text);
     }
     .pill.primary{
-      border-color: color-mix(in srgb, var(--a2) 40%, var(--line));
-      background: color-mix(in srgb, var(--a2) 12%, var(--card2));
-      color: var(--text);
+      background: linear-gradient(135deg, rgba(94,247,199,.95), rgba(122,167,255,.95));
+      color: rgba(11,16,32,.92);
+      border-color: transparent;
+      font-weight: 900;
+      box-shadow: 0 16px 50px rgba(122,167,255,.18);
     }
 
     .iconBtn{
-      width:40px; height:40px;
+      width:42px; height:42px;
       border-radius: 14px;
       border: 1px solid var(--line);
-      background: color-mix(in srgb, var(--card2) 92%, transparent);
+      background: rgba(255,255,255,.04);
       cursor:pointer;
       display:grid; place-items:center;
-      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+      transition: transform .18s ease, border-color .2s ease, background .2s ease;
     }
+    [data-theme="light"] .iconBtn{ background: rgba(16,24,40,.04); }
     .iconBtn:hover{
       transform: translateY(-1px);
-      border-color: color-mix(in srgb, var(--a1) 35%, var(--line));
-      background: color-mix(in srgb, var(--a1) 10%, var(--card2));
+      border-color: rgba(122,167,255,.28);
+      background: rgba(122,167,255,.08);
     }
 
-    /* =========================
-       LAYOUT
-    ========================= */
-    .wrap{max-width:var(--max); margin:0 auto; padding: 22px 18px 104px}
+    .menuBtn{display:none}
+    @media (max-width: 900px){
+      .links{display:none}
+      .menuBtn{display:grid}
+    }
+
+    /* ===== DRAWER ===== */
+    .drawerBack{
+      position:fixed; inset:0;
+      background: rgba(0,0,0,.45);
+      backdrop-filter: blur(8px);
+      z-index:80;
+      opacity:0; pointer-events:none;
+      transition: opacity .2s ease;
+    }
+    .drawerBack.on{opacity:1; pointer-events:auto}
+    .drawer{
+      position:fixed; top:12px; right:12px; left:12px;
+      z-index:81;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--card), var(--card2));
+      box-shadow: var(--shadow);
+      transform: translateY(-10px);
+      opacity:0;
+      pointer-events:none;
+      transition: opacity .2s ease, transform .2s ease;
+      overflow:hidden;
+    }
+    .drawer.on{opacity:1; transform: translateY(0); pointer-events:auto}
+    .drawerTop{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 12px 12px;
+      border-bottom:1px solid var(--line);
+    }
+    .drawerLinks{
+      padding: 12px;
+      display:grid; gap:10px;
+    }
+    .drawerLinks a{
+      padding: 12px 12px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      font-weight: 800;
+    }
+    [data-theme="light"] .drawerLinks a{background: rgba(16,24,40,.04)}
+
+    /* ===== LAYOUT ===== */
+    .wrap{max-width:var(--max); margin:0 auto; padding: 18px 16px 100px;}
+    section{scroll-margin-top: calc(var(--topH) + 16px);}
+    .grid{display:grid; grid-template-columns: repeat(12, 1fr); gap: 14px;}
     .card{
       border: 1px solid var(--line);
       border-radius: var(--r);
@@ -186,216 +206,390 @@
       overflow:hidden;
     }
     .pad{padding: 18px}
-
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 14px;
-      margin-top: 16px;
-    }
-    .col6{grid-column: span 6}
-    .col4{grid-column: span 4}
-    .col8{grid-column: span 8}
     .col12{grid-column: span 12}
-    @media (max-width: 980px){
-      .col6,.col4,.col8{grid-column: span 12}
+    .col8{grid-column: span 8}
+    .col4{grid-column: span 4}
+    .col6{grid-column: span 6}
+    @media (max-width: 900px){
+      .col8,.col4,.col6{grid-column: span 12}
+      .pad{padding: 16px}
     }
 
-    .hero{
-      padding: 18px 0 8px;
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 16px;
-      align-items:stretch;
-    }
-    @media (max-width: 980px){ .hero{grid-template-columns:1fr} }
+    .hr{height:1px; background: var(--line); margin: 16px 0}
+    .miniTitle{margin:0 0 8px; font-size: 18px; letter-spacing:.2px;}
+    .muted{color:var(--muted); font-size: 13.5px; line-height: 1.85; margin:0}
+
+    /* ===== HERO (Home) ===== */
+    .hero{display:grid; grid-template-columns: 1.12fr .88fr; gap: 14px; margin-top: 14px;}
+    @media (max-width: 900px){ .hero{grid-template-columns: 1fr} }
 
     .heroMain{
       background:
-        radial-gradient(900px 420px at 12% 22%, color-mix(in srgb, var(--a1) 18%, transparent), transparent 58%),
-        radial-gradient(800px 420px at 92% 0%, color-mix(in srgb, var(--a2) 18%, transparent), transparent 55%),
+        radial-gradient(900px 420px at 12% 22%, rgba(94,247,199,.16), transparent 58%),
+        radial-gradient(800px 420px at 92% 0%, rgba(122,167,255,.16), transparent 55%),
         linear-gradient(180deg, var(--card), var(--card2));
     }
-    .hTitle{
-      margin:0 0 10px;
-      font-size: clamp(30px, 3.8vw, 54px);
-      letter-spacing:.2px;
-      line-height:1.05;
-    }
-    .hSub{
-      margin:0 0 16px;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.9;
-      max-width: 80ch;
-    }
-
-    .chips{display:flex; flex-wrap:wrap; gap:8px; margin: 0 0 16px}
-    .chip{
-      padding: 8px 10px;
+    .kicker{
+      display:inline-flex; gap:8px; align-items:center;
+      padding: 7px 10px;
       border-radius: 999px;
-      border: 1px solid color-mix(in srgb, var(--line) 92%, transparent);
-      background: color-mix(in srgb, rgba(0,0,0,.18) 40%, transparent);
+      border: 1px solid rgba(122,167,255,.22);
+      background: rgba(122,167,255,.08);
+      color: var(--muted);
+      font-size: 12.5px;
+      margin-bottom: 12px;
+      width: fit-content;
+    }
+    .kdot{
+      width:8px; height:8px; border-radius:999px;
+      background: var(--a1);
+      box-shadow: 0 0 0 4px rgba(94,247,199,.12);
+    }
+    .hTitle{margin:0 0 10px; font-size: clamp(30px, 4.2vw, 54px); letter-spacing:.2px; line-height:1.04;}
+    .hSub{margin:0 0 16px; color: var(--muted); font-size: 15px; line-height: 1.9; max-width: 72ch;}
+
+    .chips{display:flex; flex-wrap:wrap; gap:8px; margin: 0 0 16px;}
+    .chip{
+      padding: 8px 10px; border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
       color: var(--muted);
       font-size: 12px;
       white-space: nowrap;
     }
-    [data-theme="light"] .chip{background: color-mix(in srgb, rgba(255,255,255,.65) 60%, transparent);}
-    .dot{
-      display:inline-block;
-      width:8px; height:8px; border-radius:999px;
-      background: var(--a1);
-      box-shadow: 0 0 0 4px color-mix(in srgb, var(--a1) 12%, transparent);
-      margin-left:8px;
-      vertical-align: middle;
-    }
+    [data-theme="light"] .chip{background: rgba(16,24,40,.04)}
 
     .btnRow{display:flex; gap:10px; flex-wrap:wrap}
     .btn{
       cursor:pointer;
       border:none;
-      padding: 11px 14px;
-      border-radius: 14px;
+      padding: 12px 14px;
+      border-radius: 16px;
       border: 1px solid var(--line);
-      background: color-mix(in srgb, var(--card2) 92%, transparent);
+      background: rgba(255,255,255,.04);
       color: var(--text);
       font-size: 13.5px;
-      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+      font-weight: 900;
+      transition: transform .18s ease, border-color .2s ease, background .2s ease, filter .2s ease;
     }
+    [data-theme="light"] .btn{background: rgba(16,24,40,.04)}
     .btn:hover{
       transform: translateY(-1px);
-      border-color: color-mix(in srgb, var(--a2) 35%, var(--line));
-      background: color-mix(in srgb, var(--a2) 10%, var(--card2));
+      border-color: rgba(122,167,255,.28);
+      background: rgba(122,167,255,.08);
     }
     .btn.accent{
-      background: linear-gradient(135deg, color-mix(in srgb, var(--a1) 98%, white 2%), color-mix(in srgb, var(--a2) 98%, white 2%));
+      background: linear-gradient(135deg, rgba(94,247,199,.95), rgba(122,167,255,.95));
       border-color: transparent;
-      color: color-mix(in srgb, var(--bg) 92%, black 8%);
-      font-weight: 900;
-      box-shadow: 0 18px 55px color-mix(in srgb, var(--a1) 18%, transparent),
-                  0 18px 55px color-mix(in srgb, var(--a2) 14%, transparent);
+      color: rgba(11,16,32,.92);
+      box-shadow: 0 16px 50px rgba(94,247,199,.16), 0 16px 50px rgba(122,167,255,.14);
     }
-    .btn.accent:hover{background: linear-gradient(135deg, var(--a1), var(--a2));}
     .btn.ghost{background: transparent;}
 
+    /* ===== Side ===== */
     .side h3{
-      margin:0 0 10px;
-      font-size: 14px;
-      color: var(--muted2);
-      letter-spacing:.45px;
-      text-transform: uppercase;
-      font-weight: 900;
+      margin:0 0 10px; font-size:13px; color:var(--muted);
+      letter-spacing:.42px; text-transform: uppercase; font-weight:900;
     }
     .stats{display:grid; grid-template-columns: 1fr 1fr; gap:10px}
     .stat{
-      border: 1px solid color-mix(in srgb, var(--line) 92%, transparent);
-      background: color-mix(in srgb, rgba(0,0,0,.18) 35%, transparent);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
       border-radius: 18px;
       padding: 12px;
     }
-    [data-theme="light"] .stat{background: rgba(255,255,255,.55);}
-    .stat b{display:block; font-size: 18px}
-    .stat span{display:block; margin-top:4px; color: var(--muted); font-size: 12px}
-
-    .hr{height:1px; background: var(--line); margin: 16px 0}
-    .miniTitle{margin:0 0 8px; font-size: 18px}
-    .muted{color:var(--muted); font-size: 13.5px; line-height:1.8; margin:0}
+    [data-theme="light"] .stat{background: rgba(16,24,40,.04)}
+    .stat b{display:block; font-size: 16px}
+    .stat span{display:block; margin-top:4px; color: var(--muted); font-size: 12px; line-height:1.5}
 
     .list{
-      border: 1px solid color-mix(in srgb, var(--line) 92%, transparent);
-      background: color-mix(in srgb, rgba(0,0,0,.18) 35%, transparent);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
       border-radius: 18px;
       padding: 12px;
     }
-    [data-theme="light"] .list{background: rgba(255,255,255,.55);}
+    [data-theme="light"] .list{background: rgba(16,24,40,.04)}
     .li{
       display:flex; gap:10px; align-items:flex-start;
-      padding: 9px 10px;
+      padding: 10px 10px;
       border-radius: 14px;
-      border: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
-      background: color-mix(in srgb, var(--card2) 70%, transparent);
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
       margin-bottom: 8px;
     }
+    [data-theme="light"] .li{border-color: rgba(16,24,40,.10); background: rgba(16,24,40,.03)}
     .li:last-child{margin-bottom:0}
     .tick{
       width:18px; height:18px; border-radius:6px;
-      background: color-mix(in srgb, var(--a2) 16%, transparent);
-      border: 1px solid color-mix(in srgb, var(--a2) 28%, transparent);
+      background: rgba(122,167,255,.14);
+      border: 1px solid rgba(122,167,255,.22);
       margin-top:2px;
       flex: 0 0 auto;
     }
     .li b{display:block; font-size: 13px; margin-bottom:2px}
     .li span{display:block; color: var(--muted); font-size: 12px; line-height: 1.75}
 
-    /* =========================
-       GALLERY
-    ========================= */
-    .gallery{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 14px;
-      margin-top: 12px;
+    /* ===== Projects card ===== */
+    .proj{
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(900px 420px at 15% 20%, rgba(122,167,255,.14), transparent 58%),
+        linear-gradient(180deg, var(--card), var(--card2));
+      overflow:hidden;
     }
+    .projIn{
+      padding: 16px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap:wrap;
+    }
+    .proj h3{margin:0 0 6px; font-size:18px}
+    .proj p{margin:0; color:var(--muted); line-height:1.85; font-size:13.5px; max-width: 72ch}
+    .tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+    .tag{
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 7px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+    }
+    [data-theme="light"] .tag{background: rgba(16,24,40,.04)}
+
+    /* ===== YAARAT PAGE (stronger design) ===== */
+    .yaHero{
+      position:relative;
+      overflow:hidden;
+      border-radius: var(--r);
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(1100px 520px at 10% 15%, rgba(124,255,107,.16), transparent 60%),
+        radial-gradient(900px 520px at 90% 0%, rgba(0,212,255,.18), transparent 55%),
+        linear-gradient(180deg, var(--card), var(--card2));
+      box-shadow: var(--shadow);
+    }
+    .yaHero:before{
+      content:"";
+      position:absolute; inset:-30%;
+      background: radial-gradient(circle at 40% 40%, rgba(255,255,255,.10), transparent 60%);
+      filter: blur(18px);
+      opacity:.55;
+      pointer-events:none;
+    }
+    .yaHeroIn{
+      position:relative;
+      padding: 18px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+    @media (max-width: 900px){ .yaHeroIn{grid-template-columns:1fr} }
+
+    .yaKicker{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,212,255,.22);
+      background: rgba(0,212,255,.08);
+      color: var(--muted);
+      font-size: 12.5px;
+      width: fit-content;
+      margin-bottom: 12px;
+    }
+    .yaDot{
+      width:8px; height:8px; border-radius:999px;
+      background: var(--ok);
+      box-shadow: 0 0 0 4px rgba(124,255,107,.12);
+    }
+
+    .yaTitle{
+      margin:0 0 10px;
+      font-size: clamp(28px, 3.6vw, 46px);
+      line-height:1.06;
+      letter-spacing:.2px;
+    }
+    .yaSub{
+      margin:0 0 16px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.9;
+      max-width: 74ch;
+    }
+
+    .yaStats{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .yaStat{
+      border: 1px solid rgba(0,212,255,.18);
+      background: rgba(0,212,255,.06);
+      border-radius: 18px;
+      padding: 12px;
+    }
+    [data-theme="light"] .yaStat{
+      border-color: rgba(16,24,40,.12);
+      background: rgba(16,24,40,.04);
+    }
+    .yaStat b{display:block; font-size:16px}
+    .yaStat span{display:block; margin-top:4px; color:var(--muted); font-size:12px; line-height:1.5}
+
+    .featureGrid{
+      display:grid;
+      grid-template-columns: repeat(12,1fr);
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .feat{grid-column: span 4;}
+    @media (max-width: 900px){ .feat{grid-column: span 12;} }
+
+    .featCard{
+      height:100%;
+      border:1px solid var(--line);
+      border-radius: 22px;
+      background: linear-gradient(180deg, var(--card), var(--card2));
+      box-shadow: 0 16px 55px rgba(0,0,0,.25);
+      padding: 14px;
+    }
+    .featTop{
+      display:flex; align-items:center; gap:10px;
+      margin-bottom: 10px;
+    }
+    .featIcon{
+      width:42px; height:42px;
+      border-radius: 16px;
+      display:grid; place-items:center;
+      background: linear-gradient(135deg, rgba(124,255,107,.95), rgba(0,212,255,.95));
+      color: rgba(11,16,32,.92);
+      font-weight: 900;
+      box-shadow: 0 18px 55px rgba(0,212,255,.16);
+    }
+    .featCard b{display:block; font-size:14px; margin-bottom:6px}
+    .featCard p{margin:0; color:var(--muted); font-size:12.8px; line-height:1.8}
+
+    /* ===== Gallery ===== */
+    .gallery{display:grid; grid-template-columns: repeat(12, 1fr); gap: 14px; margin-top: 12px;}
     .shot{
       grid-column: span 6;
       border-radius: 22px;
       border: 1px solid var(--line);
       overflow:hidden;
-      background: color-mix(in srgb, var(--card2) 92%, transparent);
-      box-shadow: 0 18px 60px rgba(0,0,0,.35);
+      background: rgba(255,255,255,.03);
+      box-shadow: 0 18px 55px rgba(0,0,0,.35);
       position:relative;
     }
-    @media (max-width: 980px){ .shot{grid-column: span 12} }
-    .shot img{
-      width:100%;
-      display:block;
-      aspect-ratio: 16 / 9;
-      object-fit: cover;
-      transform: scale(1.01);
-      filter: saturate(1.05) contrast(1.03);
-    }
-    .shot .cap{
+    @media (max-width: 900px){ .shot{grid-column: span 12} }
+    .shot img{width:100%; aspect-ratio: 16/9; object-fit: cover; transform: scale(1.01); filter: saturate(1.03) contrast(1.03);}
+    .cap{
       position:absolute;
       inset:auto 12px 12px 12px;
       padding: 10px 12px;
       border-radius: 16px;
-      border: 1px solid color-mix(in srgb, var(--line) 92%, transparent);
-      background: color-mix(in srgb, rgba(0,0,0,.35) 55%, transparent);
-      backdrop-filter: blur(10px);
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,.35);
+      backdrop-filter: blur(12px);
       color: var(--text);
       font-size: 13px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
     }
-    [data-theme="light"] .shot .cap{
-      background: color-mix(in srgb, rgba(255,255,255,.75) 70%, transparent);
-      color: #0c1426;
-    }
+    [data-theme="light"] .cap{background: rgba(255,255,255,.78); color: #0C1426;}
     .cap b{font-weight:900}
     .cap span{color:var(--muted); font-size:12px}
 
-    /* =========================
-       REVEAL (SAFE FALLBACK)
-       - Default: visible
-       - When JS adds body[data-js="1"], reveal animates
-    ========================= */
+    /* ===== ORDER ===== */
+    select { color: var(--text); background-color: transparent; }
+    select option { background:#fff; color:#111; }
+    .fGrid{display:grid; grid-template-columns: 1fr 1fr; gap: 12px;}
+    @media (max-width: 900px){ .fGrid{grid-template-columns:1fr} }
+    .fSpan2{grid-column: span 2}
+    @media (max-width: 900px){ .fSpan2{grid-column: span 1} }
+    .fField label{display:block; margin: 0 0 6px; font-size: 13px; color: var(--muted); font-weight: 900;}
+    .fField input, .fField select, .fField textarea{
+      width:100%; border-radius: 16px; border: 1px solid var(--line);
+      background: rgba(255,255,255,.03); color: var(--text);
+      padding: 12px 12px; outline:none;
+      transition: border-color .2s ease, background .2s ease;
+    }
+    [data-theme="light"] .fField input,[data-theme="light"] .fField select,[data-theme="light"] .fField textarea{background: rgba(16,24,40,.04)}
+    .fField textarea{resize: vertical; min-height: 110px}
+    .fField input:focus, .fField select:focus, .fField textarea:focus{border-color: rgba(122,167,255,.35); background: rgba(122,167,255,.08);}
+    .chipsPick{display:flex; flex-wrap:wrap; gap: 8px;}
+    .pick{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      padding: 10px 11px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      color: var(--muted);
+      display:flex; align-items:center; gap: 8px;
+      cursor:pointer; user-select:none;
+      transition: transform .15s ease, border-color .2s ease, background .2s ease, color .2s ease;
+    }
+    [data-theme="light"] .pick{background: rgba(16,24,40,.04)}
+    .pick:hover{transform: translateY(-1px); border-color: rgba(94,247,199,.30); background: rgba(94,247,199,.08); color: var(--text);}
+    .pick input{accent-color: rgba(122,167,255,.92);}
+
+    /* ===== Floating ===== */
+    .floatCTA{
+      position: fixed;
+      right: 14px; bottom: 14px;
+      z-index: 70;
+      display:flex; gap:10px; align-items:center;
+    }
+    .fab{
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,.30);
+      backdrop-filter: blur(12px);
+      border-radius: 999px;
+      padding: 12px 14px;
+      cursor:pointer;
+      display:flex; align-items:center; gap:10px;
+      color: var(--text);
+      transition: transform .18s ease, border-color .2s ease, background .2s ease;
+      box-shadow: 0 18px 55px rgba(0,0,0,.35);
+      font-weight: 900; font-size: 13.5px;
+    }
+    [data-theme="light"] .fab{background: rgba(255,255,255,.78); color:#0C1426;}
+    .fab:hover{transform: translateY(-2px); border-color: rgba(122,167,255,.28); background: rgba(122,167,255,.10);}
+    .fab .ic{
+      width:34px;height:34px;border-radius:999px;
+      display:grid; place-items:center;
+      background: linear-gradient(135deg, var(--a1), var(--a2));
+      color: rgba(11,16,32,.92);
+      font-size: 16px;
+      box-shadow: 0 18px 45px rgba(122,167,255,.18);
+    }
+    .fab.green .ic{background: linear-gradient(135deg, var(--ok), var(--cyan));}
+
+    /* ===== Footer ===== */
+    .footer{
+      margin-top: 18px;
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+      color: var(--muted);
+      font-size: 13px;
+      display:flex; align-items:center; justify-content:space-between;
+      flex-wrap:wrap; gap:10px;
+    }
+
+    /* ===== Reveal ===== */
     .reveal{opacity:1; transform:none;}
     body[data-js="1"] .reveal{opacity:0; transform: translateY(10px); transition: opacity .65s ease, transform .65s ease;}
     body[data-js="1"] .reveal.on{opacity:1; transform: translateY(0)}
 
-    /* =========================
-       TOAST
-    ========================= */
+    /* ===== Toast ===== */
     .toast{
       position: fixed;
-      left: 16px;
-      bottom: 16px;
+      left: 14px; bottom: 14px;
       padding: 10px 12px;
       border-radius: 14px;
       border: 1px solid var(--line);
-      background: color-mix(in srgb, rgba(0,0,0,.35) 55%, transparent);
+      background: rgba(0,0,0,.32);
       backdrop-filter: blur(12px);
       color: var(--text);
       z-index: 999;
@@ -405,216 +599,221 @@
       transition: opacity .25s ease, transform .25s ease;
       pointer-events:none;
     }
-    [data-theme="light"] .toast{
-      background: color-mix(in srgb, rgba(255,255,255,.75) 70%, transparent);
-      color:#0c1426;
-    }
+    [data-theme="light"] .toast{background: rgba(255,255,255,.82); color:#0C1426;}
     .toast.show{opacity:1; transform: translateY(0)}
 
-    /* =========================
-       ORDER FORM (beautiful)
-    ========================= */
-    .orderForm .fGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    @media (max-width: 980px){ .orderForm .fGrid{grid-template-columns:1fr} }
-    .fSpan2{grid-column: span 2}
-    @media (max-width: 980px){ .fSpan2{grid-column: span 1} }
-
-    .fField label{
-      display:block;
-      margin: 0 0 6px;
-      font-size: 13px;
-      color: var(--muted2);
-      font-weight: 800;
-    }
-    .fField input, .fField select, .fField textarea{
-      width:100%;
-      border-radius: 16px;
-      border: 1px solid var(--line);
-      background: color-mix(in srgb, var(--card2) 92%, transparent);
-      color: var(--text);
-      padding: 12px 12px;
-      outline: none;
-      transition: transform .15s ease, border-color .2s ease, background .2s ease;
-    }
-    .fField textarea{resize: vertical; min-height: 110px}
-    .fField input:focus, .fField select:focus, .fField textarea:focus{
-      border-color: color-mix(in srgb, var(--a2) 40%, var(--line));
-      background: color-mix(in srgb, var(--a2) 8%, var(--card2));
-    }
-    .chipsPick{display:flex; flex-wrap:wrap; gap: 8px;}
-    .pick{
-      border: 1px solid var(--line);
-      background: color-mix(in srgb, rgba(0,0,0,.16) 35%, transparent);
-      padding: 9px 10px;
-      border-radius: 999px;
-      font-size: 12.5px;
-      color: var(--muted);
-      display:flex;
-      align-items:center;
-      gap: 8px;
-      cursor:pointer;
-      user-select:none;
-      transition: transform .15s ease, border-color .2s ease, background .2s ease, color .2s ease;
-    }
-    [data-theme="light"] .pick{background: rgba(255,255,255,.55)}
-    .pick:hover{
-      transform: translateY(-1px);
-      border-color: color-mix(in srgb, var(--a1) 35%, var(--line));
-      background: color-mix(in srgb, var(--a1) 10%, transparent);
-      color: var(--text);
-    }
-    .pick input{accent-color: color-mix(in srgb, var(--a2) 90%, white 10%);}
-
-    /* =========================
-       FLOATING CTA
-    ========================= */
-    .floatCTA{
-      position: fixed;
-      right: 16px;
-      bottom: 16px;
-      z-index: 998;
-      display:flex;
-      gap:10px;
-      align-items:center;
-    }
-    .fab{
-      border: 1px solid var(--line);
-      background: color-mix(in srgb, rgba(0,0,0,.35) 55%, transparent);
-      backdrop-filter: blur(12px);
-      border-radius: 999px;
-      padding: 12px 14px;
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      gap:10px;
-      color: var(--text);
-      transition: transform .2s ease, border-color .2s ease, background .2s ease;
-      box-shadow: 0 18px 60px rgba(0,0,0,.35);
-      font-weight: 900;
-    }
-    [data-theme="light"] .fab{
-      background: color-mix(in srgb, rgba(255,255,255,.75) 70%, transparent);
-      color:#0c1426;
-    }
-    .fab:hover{
-      transform: translateY(-2px);
-      border-color: color-mix(in srgb, var(--a2) 35%, var(--line));
-      background: color-mix(in srgb, var(--a2) 10%, transparent);
-    }
-    .fab .ic{width:34px;height:34px;border-radius:999px;display:grid;place-items:center;
-      background: linear-gradient(135deg, var(--a1), var(--a2));
-      color: color-mix(in srgb, var(--bg) 92%, black 8%);
-      box-shadow: 0 18px 55px color-mix(in srgb, var(--a2) 18%, transparent);
-      font-size: 16px;
-    }
-
-    /* =========================
-       FOOTER
-    ========================= */
-    .footer{
-      margin-top: 18px;
-      border-top: 1px solid var(--line);
-      padding-top: 14px;
-      color: var(--muted);
-      font-size: 13px;
-      display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;
-    }
-
-    /* ===== Order Accordion (DETAILS) ===== */
-    .orderAcc{
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: linear-gradient(180deg, color-mix(in srgb, var(--a2) 10%, var(--card)), var(--card2));
-      overflow:hidden;
-    }
-    .orderAcc > summary{list-style:none;}
-    .orderAcc > summary::-webkit-details-marker{display:none}
-
-    .orderSum{
-      padding: 14px 14px;
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      transition: transform .18s ease, background .2s ease, border-color .2s ease;
-    }
-    .orderAcc:hover .orderSum{
-      background: linear-gradient(180deg, color-mix(in srgb, var(--a1) 10%, transparent), transparent);
-    }
-
-    .orderTitle{
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-    .orderTitle .bolt{
-      width:34px; height:34px;
-      border-radius: 12px;
-      display:grid; place-items:center;
-      background: color-mix(in srgb, var(--a2) 16%, transparent);
-      border: 1px solid color-mix(in srgb, var(--a2) 30%, var(--line));
-    }
-
-    .orderSum .chev{
-      font-size: 18px;
-      opacity:.9;
-      transition: transform .25s ease;
-    }
-    .orderAcc[open] .orderSum .chev{ transform: rotate(180deg); }
-
-    .orderBodyIn{
-      padding: 0 14px 14px;
-      animation: drop .25s ease;
-    }
-    @keyframes drop{
-      from{opacity:0; transform: translateY(-6px)}
-      to{opacity:1; transform: translateY(0)}
-    }
-
-    /* =========================
-       ✨ NEW: Keyboard focus + reduced motion
-    ========================= */
-    :focus-visible{
-      outline: 2px solid color-mix(in srgb, var(--a2) 55%, transparent);
-      outline-offset: 3px;
-      border-radius: 12px;
-    }
+    :focus-visible{outline: 2px solid rgba(122,167,255,.55); outline-offset: 3px; border-radius: 12px;}
     @media (prefers-reduced-motion: reduce){
       *{animation:none !important; transition:none !important; scroll-behavior:auto !important}
     }
+    .ptz-footer {
+  margin-top: 80px;
+  padding: 40px 16px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  background: linear-gradient(
+    180deg,
+    rgba(11,16,32,.6),
+    rgba(11,16,32,.95)
+  );
+}
 
-    /* =========================
-       ✨ NEW: tiny badge
-    ========================= */
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid color-mix(in srgb, var(--line) 90%, transparent);
-      background: color-mix(in srgb, var(--card2) 85%, transparent);
-      color: var(--muted);
-      font-size: 12px;
-      white-space: nowrap;
-    }
-    .badge b{color:var(--text)}
+[data-theme="light"] .ptz-footer {
+  background: linear-gradient(
+    180deg,
+    rgba(247,248,252,.7),
+    rgba(247,248,252,1)
+  );
+  border-top: 1px solid rgba(0,0,0,.08);
+}
+
+.ptz-footer-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  gap: 24px;
+  text-align: center;
+}
+
+.ptz-brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.ptz-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  background: linear-gradient(135deg, #5EF7C7, #7AA7FF);
+  color: #0b1020;
+  box-shadow: 0 12px 35px rgba(122,167,255,.35);
+}
+
+.ptz-brand span {
+  display: block;
+  font-size: 13px;
+  opacity: .75;
+}
+
+.ptz-links {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.ptz-links a {
+  font-size: 13px;
+  opacity: .7;
+  transition: opacity .2s ease;
+}
+
+.ptz-links a:hover {
+  opacity: 1;
+}
+
+.ptz-copy {
+  font-size: 12px;
+  opacity: .6;
+}
+.ptz-footer{
+  margin-top: 80px;
+  padding: 56px 16px 46px;
+  border-top: 1px solid var(--line);
+  background:
+    radial-gradient(900px 280px at 50% 0%, color-mix(in srgb, var(--a2) 14%, transparent), transparent 55%),
+    linear-gradient(180deg, color-mix(in srgb, var(--bg) 55%, transparent), var(--bg2));
+}
+
+[data-theme="light"] .ptz-footer{
+  background:
+    radial-gradient(900px 280px at 50% 0%, color-mix(in srgb, var(--a2) 12%, transparent), transparent 55%),
+    linear-gradient(180deg, color-mix(in srgb, var(--bg2) 55%, transparent), var(--bg));
+}
+
+.ptz-footer-inner{
+  max-width: var(--max);
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Brand row (כמו בתמונה: טקסט + לוגו מימין) */
+.ptz-brand{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.ptz-brandText{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ptz-title{
+  font-weight: 950;
+  letter-spacing: .2px;
+  font-size: 18px;
+}
+
+.ptz-sub{
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Logo image */
+.ptz-logoWrap{
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--line) 85%, transparent);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--a1) 24%, transparent), color-mix(in srgb, var(--a2) 24%, transparent));
+  box-shadow: 0 16px 45px rgba(0,0,0,.22);
+  display: grid;
+  place-items: center;
+}
+
+.ptz-logoImg{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Links row (פרוס, כמו בתמונה) */
+.ptz-links{
+  display: flex;
+  justify-content: center;
+  gap: 34px;            /* ← זה ה"פרוס" */
+  flex-wrap: wrap;
+  padding-top: 6px;
+}
+
+.ptz-links a{
+  font-size: 13px;
+  color: var(--muted2);
+  transition: transform .18s ease, color .18s ease, opacity .18s ease;
+  padding: 6px 2px;
+}
+
+.ptz-links a:hover{
+  color: var(--text);
+  transform: translateY(-1px);
+}
+
+/* Copyright row */
+.ptz-copy{
+  margin-top: 2px;
+  font-size: 12px;
+  color: color-mix(in srgb, var(--muted) 85%, transparent);
+}
+
+.ptz-mono{ font-family: var(--mono); }
+
+/* Mobile tuning */
+@media (max-width: 520px){
+  .ptz-footer{ padding-top: 44px; }
+  .ptz-links{ gap: 18px; }
+  .ptz-title{ font-size: 17px; }
+}
+
   </style>
 </head>
 
 <body>
-  <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
   <div class="grain"></div>
 
+  <!-- Mobile Drawer -->
+  <div id="drawerBack" class="drawerBack"></div>
+  <div id="drawer" class="drawer" aria-hidden="true">
+    <div class="drawerTop">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div class="bname">
+          <b id="drawerTitle">Peretzinho</b>
+          <span id="drawerSub">נדב פרץ · בניית אתרים ומערכות</span>
+        </div>
+      </div>
+      <button class="iconBtn" id="closeMenu" aria-label="סגירת תפריט">✕</button>
+    </div>
+    <div class="drawerLinks" id="drawerLinks"></div>
+  </div>
+
   <div class="layer">
-    <!-- =========================
-         HOME (Peretzinho)
-    ========================= -->
+    <!-- ======================
+         VIEW: HOME
+    ====================== -->
     <div id="view-home">
       <header class="top">
         <div class="in">
@@ -626,259 +825,183 @@
             </div>
           </div>
 
-          <div class="nav">
-            <a class="pill" href="#home">בית</a>
-            <a class="pill primary" href="#projects">פרויקטים</a>
-            <a class="pill" href="#order">הזמנת אתר</a>
-            <a class="pill" href="#contact">צור קשר</a>
-            <a class="pill" href="#order" data-route>הזמנת אתר</a>
+          <nav class="nav" aria-label="ניווט">
+            <div class="links">
+              <a class="pill" href="#home">בית</a>
+              <a class="pill" href="#projects">פרויקטים</a>
+              <a class="pill primary" href="#yarataemek" data-route>יערת העמק</a>
+              <a class="pill" href="#order">הזמנת אתר</a>
+              <a class="pill" href="#contact">צור קשר</a>
+            </div>
 
+            <button class="iconBtn menuBtn" id="menuBtn" aria-label="פתיחת תפריט">☰</button>
             <button class="iconBtn" id="themeBtn" aria-label="החלפת מצב תצוגה">
               <span id="themeIcon" style="font-size:16px">🌙</span>
             </button>
-          </div>
+          </nav>
         </div>
       </header>
 
       <main class="wrap">
-        <div class="hero">
+        <section class="hero" id="home">
           <section class="card heroMain reveal">
             <div class="pad">
-              <h1 class="hTitle">Peretzinho — עיצוב חד. מערכת שעובדת באמת.</h1>
+              <div class="kicker"><span class="kdot"></span>מוצר. לא “עוד אתר”.</div>
+              <h1 class="hTitle">Peretzinho — עיצוב חד, מערכת שעובדת באמת.</h1>
               <p class="hSub">
-                אני <b>נדב פרץ</b>. בונה אתרים שנראים מושקע ומרגישים “מוצר”.
+                אני <b>נדב פרץ</b>. בונה אתרים שנראים פרימיום ומרגישים כמו מוצר אמיתי.
                 הפרויקט המוביל: <b>אתר יערת העמק</b> — מערכת דיגיטלית לבית ספר עם עדכון בזמן אמת.
               </p>
 
               <div class="chips">
-                <span class="chip"><span class="dot"></span>עברית + RTL מושלם</span>
-                <span class="chip"><span class="dot"></span>מצב מואר/מוחשך אמיתי</span>
-                <span class="chip"><span class="dot"></span>Mobile-first</span>
-                <span class="chip"><span class="dot"></span>עדכון מיידי</span>
-                <span class="chip"><span class="dot"></span>דף ניהול  + הרשאות</span>
+                <span class="chip">RTL מושלם</span>
+                <span class="chip">Mobile-first</span>
+                <span class="chip">Dark / Light אמיתי</span>
+                <span class="chip">Admin + הרשאות</span>
+                <span class="chip">Real-time</span>
               </div>
 
               <div class="btnRow">
-                <button class="btn accent" onclick="go('projects')">לפרויקטים</button>
-                <button class="btn" onclick="go('yarataemek')">פתח פרויקט: יערת העמק</button>
+                <a class="btn accent" href="#projects">לפרויקטים</a>
+                <a class="btn" href="#yarataemek" data-route>דף פרויקט: יערת העמק</a>
                 <button class="btn ghost" onclick="copyText('Peretzinho (נדב פרץ) — בניית אתרים ומערכות תוכן. פרויקט: יערת העמק (חדשות, מבחנים, מערכת שעות, סקרים, Admin, עדכון בזמן אמת).')">העתק תיאור קצר</button>
               </div>
 
               <div class="hr"></div>
-
-              <!-- ✨ NEW: micro trust bar -->
-              <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center">
-                <span class="badge">⚡ <b id="perfBadge">0</b>ms פתיחה (מדידה מקומית)</span>
-                <span class="badge">📱 <b>מובייל</b>  לפני דסקטופ [תלוי באתר]</span>
-              </div>
-
-              <div style="margin-top:10px">
-                <p class="muted">הסוד ל־“וואו” הוא גימור: היררכיה, מרווחים, טיפוגרפיה, ואפס עומס מיותר.</p>
-              </div>
+              <p class="muted">זה לא “אפקטים”. זה גימור: היררכיה, ריווח, קריאות, וניווט שעובד במובייל.</p>
             </div>
           </section>
 
-          <aside class="card side reveal">
+          <aside class="card reveal">
             <div class="pad">
               <h3>מה אתה מקבל</h3>
               <div class="stats">
-                <div class="stat"><b>עיצוב</b><span>לפי בקשת הלקוח </span></div>
-                <div class="stat"><b>סדר</b><span>תוכן מאורגן</span></div>
-                <div class="stat"><b>ביצועים</b><span>טעינה מהירה</span></div>
-                <div class="stat"><b>הרחבת האתר</b><span>נוח להרחיב את האתר</span></div>
+                <div class="stat"><b>עיצוב</b><span>נקי, חד, מותאם למותג</span></div>
+                <div class="stat"><b>סדר</b><span>מבנה ברור + היררכיה</span></div>
+                <div class="stat"><b>ביצועים</b><span>טעינה מהירה ונעימה</span></div>
+                <div class="stat"><b>הרחבה</b><span>קל להוסיף עמודים/פיצ׳רים</span></div>
               </div>
 
               <div class="hr"></div>
-
               <div class="list">
                 <div class="li"><div class="tick"></div><div><b>תהליך קצר</b><span>אפיון → עיצוב → בנייה → העלאה.</span></div></div>
-                <div class="li"><div class="tick"></div><div><b>תוצאה ברורה</b><span>אתר שמרגיש יוקרתי ולא “עמוס”.</span></div></div>
-                <div class="li"><div class="tick"></div><div><b>תחזוקה</b><span> דף ניהול הוא הבחירה המועדפת על צרכנים,מכיוון שעם דף ניהול לא צריכים לגעת בקוד [כדאי להוסיף את זה בהזמנת האתר]</span></div></div>
+                <div class="li"><div class="tick"></div><div><b>תוצאה נקייה</b><span>אין עומס — יש “וואו”.</span></div></div>
+                <div class="li"><div class="tick"></div><div><b>דף ניהול</b><span>אופציונלי: מעדכנים תוכן בלי קוד.</span></div></div>
               </div>
 
-              <!-- ✨ NEW: quick actions -->
               <div class="hr"></div>
               <div class="btnRow">
-                <button class="btn" onclick="go('order')">הזמן אתר עכשיו</button>
+                <a class="btn accent" href="#order">הזמן אתר עכשיו</a>
                 <button class="btn ghost" onclick="copyText('היי נדב, אני רוצה הצעת מחיר לאתר. אפשר לדבר?')">העתק הודעה קצרה</button>
               </div>
             </div>
           </aside>
-        </div>
-
-        <!-- ORDER -->
-        <section id="order" class="reveal">
-          <div class="grid">
-            <div class="card col12">
-              <div class="pad">
-
-                <details class="orderAcc" id="orderAcc">
-                  <summary class="orderSum" id="orderSummary">
-                    <div class="orderTitle">
-                      <span class="bolt">⚡</span>
-                      <div>
-                        <h2 class="miniTitle" style="margin:0">הזמנת אתר · לחצו לפתיחה</h2>
-                        <p class="muted" style="margin:4px 0 0">
-                          30 שניות — וזה פותח מייל עם הודעה מוכנה. [קבלת מענה ראשוני עד 24 שעות משליחה הבקשה]
-                          <span id="orderStatus" style="margin-right:10px; font-weight:800; color:var(--muted2)"></span>
-                        </p>
-                      </div>
-                    </div>
-                    <span class="chev" aria-hidden="true">⌄</span>
-                  </summary>
-
-                  <div class="orderBodyIn">
-                    <div class="hr"></div>
-
-                    <form id="orderForm" class="orderForm" autocomplete="on">
-                      <div class="fGrid">
-                        <div class="fField">
-                          <label>שם מלא</label>
-                          <input name="name" type="text" placeholder="איך קוראים לכם?" required />
-                        </div>
-
-                        <div class="fField">
-                          <label>טלפון / וואטסאפ</label>
-                          <input name="phone" type="tel" placeholder="050-0000000" />
-                        </div>
-
-                        <div class="fField">
-                          <label>אימייל לחזרה</label>
-                          <input name="email" type="email" placeholder="name@email.com" required />
-                        </div>
-
-                        <div class="fField">
-                          <label>סוג אתר</label>
-                          <select name="type" required>
-                            <option value="" selected disabled>בחרו…</option>
-                            <option>דף נחיתה</option>
-                            <option>אתר תדמית</option>
-                            <option>אתר לבית ספר / מערכת תוכן</option>
-                            <option>פורטפוליו / פרויקטים</option>
-                            <option>אחר</option>
-                          </select>
-                        </div>
-
-                        <div class="fField fSpan2">
-                          <label>מה צריך להיות באתר?</label>
-                          <textarea name="pages" rows="4" placeholder="דפים/תוכן: בית, אודות, שירותים, גלריה, צור קשר…"></textarea>
-                        </div>
-
-                        <div class="fField fSpan2">
-                          <label>סגנון עיצוב</label>
-                          <div class="chipsPick">
-                            <label class="pick"><input type="checkbox" name="style" value="נקי ומודרני" />נקי ומודרני</label>
-                            <label class="pick"><input type="checkbox" name="style" value="יוקרתי" />יוקרתי</label>
-                            <label class="pick"><input type="checkbox" name="style" value="צבעוני אך לא מוגזם" />צבעוני אך לא מוגזם</label>
-                            <label class="pick"><input type="checkbox" name="style" value="דארק/לייט" />דארק/לייט</label>
-                            <label class="pick"><input type="checkbox" name="style" value="אנימציות עדינות" />אנימציות עדינות</label>
-                          </div>
-
-                          <!-- ✨ NEW: little note you wrote -->
-                          <p class="muted" style="margin-top:10px">
-                            דף ניהול הוא הבחירה המועדפת על צרכנים, מכיוון שעם דף ניהול לא צריכים לגעת בקוד.
-                          </p>
-                        </div>
-
-                        <div class="fField">
-                          <label>תקציב משוער</label>
-                          <select name="budget">
-                            <option>לא בטוח</option>
-                            <option>נמוך</option>
-                            <option>בינוני</option>
-                            <option>גבוה</option>
-                          </select>
-                        </div>
-
-                        <div class="fField">
-                          <label>דדליין</label>
-                          <input name="deadline" type="text" placeholder="מתי אתם צריכים את זה?" />
-                        </div>
-
-                        <div class="fField fSpan2">
-                          <label>קישורים/דוגמאות שאהבתם</label>
-                          <input name="refs" type="text" placeholder="URL / אינסטגרם / אתרים לדוגמה" />
-                        </div>
-                      </div>
-
-                      <div class="btnRow" style="margin-top:12px">
-                        <button class="btn accent" type="submit" id="sendBtn">שליחה להזמנת אתר</button>
-                        <button class="btn" type="button" onclick="orderDemoFill()">מלא דוגמה</button>
-                        <button class="btn ghost" type="button" onclick="document.getElementById('orderForm').reset()">נקה</button>
-                      </div>
-
-                      <p class="muted" style="margin-top:10px">
-                        בלחיצה “שליחה” ייפתח המייל עם הודעה מוכנה ל־<b>PTZatarim@gmail.com</b>.
-                      </p>
-                    </form>
-                  </div>
-                </details>
-
-              </div>
-            </div>
-          </div>
         </section>
 
-        <!-- Projects -->
-        <section id="projects" class="reveal">
+        <section id="projects" class="reveal" style="margin-top:16px">
           <div class="grid">
             <div class="card col12">
               <div class="pad">
                 <h2 class="miniTitle">פרויקטים</h2>
-                <p class="muted">הכוכב: מערכת דיגיטלית לבית ספר “יערת העמק”.</p>
-
+                <p class="muted">הכוכב הראשי: מערכת דיגיטלית לבית ספר “יערת העמק”.</p>
                 <div class="hr"></div>
 
-                <div class="grid" style="margin-top:0">
-                  <div class="card col12" style="box-shadow:none; background:linear-gradient(180deg, color-mix(in srgb, var(--a2) 8%, var(--card)), var(--card2));">
-                    <div class="pad">
-                      <div style="display:flex; gap:12px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;">
-                        <div style="min-width:260px">
-                          <h3 style="margin:0 0 6px; font-size:18px">יערת העמק · מערכת לבית ספר</h3>
-                          <p class="muted" style="margin:0">
-                            מרכזת הכל במקום אחד: מידע לימודי/ארגוני/חברתי — מעודכן בזמן אמת ונוח לנייד.
-                          </p>
-                        </div>
-                        <div class="btnRow">
-                          <button class="btn accent" onclick="go('yarataemek')">פתח פרויקט</button>
-                          <a class="btn" href="https://www.yaarathaemek.online/" target="_blank" rel="noopener">כניסה לאתר</a>
-                        </div>
+                <div class="proj">
+                  <div class="projIn">
+                    <div style="min-width:260px">
+                      <h3>יערת העמק · מערכת לבית ספר</h3>
+                      <p>מרכזת הכל במקום אחד: מידע לימודי/ארגוני/חברתי — מעודכן בזמן אמת ונוח לנייד.</p>
+                      <div class="tags">
+                        <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+                        <span class="tag">Firebase</span><span class="tag">Auth</span><span class="tag">Firestore</span><span class="tag">Real-time</span>
                       </div>
-
-                      <div class="chips" style="margin-top:14px">
-                        <span class="chip"><span class="dot"></span>דף בית + דפי כיתות</span>
-                        <span class="chip"><span class="dot"></span>חדשות</span>
-                        <span class="chip"><span class="dot"></span>מבחנים</span>
-                        <span class="chip"><span class="dot"></span>מערכת שעות</span>
-                        <span class="chip"><span class="dot"></span>סקרים</span>
-                        <span class="chip"><span class="dot"></span>Admin</span>
-                      </div>
+                    </div>
+                    <div class="btnRow">
+                      <a class="btn accent" href="#yarataemek" data-route>דף פרויקט</a>
+                      <a class="btn" href="https://www.yaarathaemek.online/" target="_blank" rel="noopener">כניסה לאתר</a>
                     </div>
                   </div>
                 </div>
 
+                <p class="muted" style="margin-top:12px">רוצה להוסיף עוד פרויקטים פה? תן לי שמות ותיאור קצר לכל אחד.</p>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- CONTACT (✨ NEW: simple section so nav doesn't lie) -->
-        <section id="contact" class="reveal">
+        <section id="order" class="reveal" style="margin-top:16px">
+          <div class="grid">
+            <div class="card col12">
+              <div class="pad">
+                <h2 class="miniTitle">הזמנת אתר</h2>
+                <p class="muted">ממלאים 30 שניות — נפתח מייל מוכן ל־<b style="font-family:var(--mono)">PTZatarim@gmail.com</b></p>
+                <div class="hr"></div>
+
+                <form id="orderForm" autocomplete="on">
+                  <div class="fGrid">
+                    <div class="fField"><label>שם מלא</label><input name="name" type="text" placeholder="איך קוראים לכם?" required /></div>
+                    <div class="fField"><label>טלפון / וואטסאפ</label><input name="phone" type="tel" placeholder="050-0000000" /></div>
+                    <div class="fField"><label>אימייל לחזרה</label><input name="email" type="email" placeholder="name@email.com" required /></div>
+                    <div class="fField">
+                      <label>סוג אתר</label>
+                      <select name="type" required>
+                        <option value="" selected disabled>בחרו…</option>
+                        <option>דף נחיתה</option><option>אתר תדמית</option><option>אתר לבית ספר / מערכת תוכן</option><option>פורטפוליו / פרויקטים</option><option>אחר</option>
+                      </select>
+                    </div>
+
+                    <div class="fField fSpan2"><label>מה צריך להיות באתר?</label><textarea name="pages" placeholder="דפים/תוכן: בית, אודות, שירותים, גלריה, צור קשר…"></textarea></div>
+
+                    <div class="fField fSpan2">
+                      <label>סגנון עיצוב</label>
+                      <div class="chipsPick">
+                        <label class="pick"><input type="checkbox" name="style" value="נקי ומודרני" />נקי ומודרני</label>
+                        <label class="pick"><input type="checkbox" name="style" value="יוקרתי" />יוקרתי</label>
+                        <label class="pick"><input type="checkbox" name="style" value="צבעוני אך לא מוגזם" />צבעוני אך לא מוגזם</label>
+                        <label class="pick"><input type="checkbox" name="style" value="דארק/לייט" />דארק/לייט</label>
+                        <label class="pick"><input type="checkbox" name="style" value="אנימציות עדינות" />אנימציות עדינות</label>
+                        <label class="pick"><input type="checkbox" name="style" value="דף ניהול" />דף ניהול</label>
+                      </div>
+                    </div>
+
+                    <div class="fField"><label>תקציב משוער</label>
+                      <select name="budget"><option>לא בטוח</option><option>נמוך</option><option>בינוני</option><option>גבוה</option></select>
+                    </div>
+                    <div class="fField"><label>דדליין</label><input name="deadline" type="text" placeholder="מתי אתם צריכים את זה?" /></div>
+                    <div class="fField fSpan2"><label>קישורים/דוגמאות</label><input name="refs" type="text" placeholder="URL / אינסטגרם / אתרים לדוגמה" /></div>
+                  </div>
+
+                  <div class="btnRow" style="margin-top:12px">
+                    <button class="btn accent" type="submit" id="sendBtn">שליחה להזמנת אתר</button>
+                    <button class="btn" type="button" onclick="orderDemoFill()">מלא דוגמה</button>
+                    <button class="btn ghost" type="button" onclick="document.getElementById('orderForm').reset(); toast('נוקה ✅')">נקה</button>
+                  </div>
+                </form>
+
+                <div class="footer">
+                  <div>© <span id="year"></span> Peretzinho</div>
+                  <div style="font-family:var(--mono)">נדב פרץ</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" class="reveal" style="margin-top:16px">
           <div class="grid">
             <div class="card col12">
               <div class="pad">
                 <h2 class="miniTitle">צור קשר</h2>
-                <p class="muted">הכי מהר: לשלוח הזמנה דרך הטופס. או להעתיק הודעה קצרה.</p>
+                <p class="muted">הכי מהר: טופס הזמנה. או לשלוח הודעה קצרה.</p>
                 <div class="hr"></div>
                 <div class="btnRow">
-                  <button class="btn accent" onclick="go('order')">פתח טופס הזמנה</button>
+                  <a class="btn accent" href="#order">פתח טופס הזמנה</a>
                   <button class="btn" onclick="copyText('היי נדב, אשמח לשמוע מחיר וזמינות לבניית אתר. יש לי רעיון מוכן.')">העתק הודעה</button>
                   <a class="btn ghost" href="mailto:PTZatarim@gmail.com">פתח מייל</a>
                 </div>
-
                 <div class="footer" style="margin-top:16px">
                   <div>מייל: <b style="font-family:var(--mono)">PTZatarim@gmail.com</b></div>
-                  <div><span style="font-family:var(--mono)">Peretzinho</span></div>
+                  <a class="pill" href="#home">למעלה</a>
                 </div>
               </div>
             </div>
@@ -888,107 +1011,115 @@
       </main>
     </div>
 
-    <!-- =========================
-         PROJECT: YA'ARAT HAEMEK (Hebrew)
-    ========================= -->
-    <div id="view-yarataemek" class="hidden">
+    <!-- ======================
+         VIEW: YA'ARAT HAEMEK (separate page)
+    ====================== -->
+    <div id="view-ya" class="hidden">
       <header class="top">
         <div class="in">
           <div class="brand">
-            <div class="logo" aria-hidden="true" style="background:linear-gradient(135deg,var(--ok),var(--cyan))"></div>
+            <div class="logo" aria-hidden="true" style="background:linear-gradient(135deg,var(--ok),var(--cyan)); box-shadow:0 14px 40px rgba(0,212,255,.16), 0 14px 40px rgba(124,255,107,.12)"></div>
             <div class="bname">
               <b>אתר יערת העמק</b>
               <span>מערכת דיגיטלית לבית ספר · עדכון בזמן אמת</span>
             </div>
           </div>
 
-          <div class="nav">
-            <a class="pill" href="#yarataemek">פתיחה</a>
-            <a class="pill" href="#p-about">סקירה</a>
-            <a class="pill" href="#p-gallery">תמונות</a>
-            <a class="pill" href="#p-features">פיצ׳רים</a>
-            <a class="pill primary" href="#home">חזרה</a>
+          <nav class="nav" aria-label="ניווט יערת">
+            <div class="links">
+              <a class="pill" href="#yarataemek">פתיחה</a>
+              <a class="pill" href="#ya-overview">סקירה</a>
+              <a class="pill" href="#ya-gallery">תמונות</a>
+              <a class="pill" href="#ya-features">פיצ׳רים</a>
+              <a class="pill primary" href="#home">חזרה</a>
+            </div>
 
+            <button class="iconBtn menuBtn" id="menuBtn2" aria-label="פתיחת תפריט">☰</button>
             <button class="iconBtn" id="themeBtn2" aria-label="החלפת מצב תצוגה">
               <span id="themeIcon2" style="font-size:16px">🌙</span>
             </button>
-          </div>
+          </nav>
         </div>
       </header>
 
-      <main class="wrap" style="padding-top:18px">
-        <section class="card reveal" style="background:
-          radial-gradient(900px 420px at 12% 25%, color-mix(in srgb, var(--ok) 14%, transparent), transparent 58%),
-          radial-gradient(800px 420px at 92% 0%, color-mix(in srgb, var(--cyan) 16%, transparent), transparent 55%),
-          linear-gradient(180deg, var(--card), var(--card2));
-        ">
-          <div class="pad">
-            <h1 class="hTitle" style="font-size:clamp(26px,3.2vw,44px)">אתר יערת העמק, הפרוייקט המרכזי שלי</h1>
-            <p class="hSub">
-              מערכת שמרכזת מידע לימודי, ארגוני וחברתי במקום אחד: ברור, נגיש, ומעודכן <b>בזמן אמת</b>.
-              פחות הודעות מפוזרות — יותר סדר.
-            </p>
+      <main class="wrap">
+        <section id="yarataemek" class="yaHero reveal">
+          <div class="yaHeroIn">
+            <div>
+              <div class="yaKicker"><span class="yaDot"></span>פרויקט מרכזי · מערכת לבית ספר</div>
+              <h1 class="yaTitle">יערת העמק — מערכת שמרכזת הכל במקום אחד</h1>
+              <p class="yaSub">
+                פחות הודעות מפוזרות, פחות בלגן, יותר סדר.
+                חדשות, מבחנים, מערכות שעות, סקרים ופאנל ניהול — עם עדכון <b>בזמן אמת</b>.
+              </p>
 
-            <div class="chips">
-              <span class="chip"><span class="dot"></span>דף בית</span>
-              <span class="chip"><span class="dot"></span>דפי כיתות</span>
-              <span class="chip"><span class="dot"></span>חדשות</span>
-              <span class="chip"><span class="dot"></span>מבחנים</span>
-              <span class="chip"><span class="dot"></span>מערכת שעות</span>
-              <span class="chip"><span class="dot"></span>סקרים</span>
-              <span class="chip"><span class="dot"></span>ניהול</span>
-              <span class="chip"><span class="dot"></span>אבטחה</span>
-              <span class="chip"><span class="dot"></span>מובייל</span>
+              <div class="chips">
+                <span class="chip">דף בית + דפי כיתות</span>
+                <span class="chip">חדשות</span>
+                <span class="chip">מבחנים</span>
+                <span class="chip">מערכת שעות</span>
+                <span class="chip">סקרים</span>
+                <span class="chip">Admin</span>
+              </div>
+
+              <div class="btnRow">
+                <a class="btn accent" href="https://www.yaarathaemek.online/" target="_blank" rel="noopener">פתח את האתר</a>
+                <a class="btn" href="#order" data-route>בוא נבנה לך מערכת</a>
+                <button class="btn ghost" onclick="copyText('אתר יערת העמק: דף בית + דפי כיתות, חדשות, מבחנים, מערכת שעות, סקרים, Admin לצוות, הרשאות, עדכון בזמן אמת (Firebase).')">העתק תיאור</button>
+              </div>
             </div>
 
-            <div class="btnRow">
-              <a class="btn accent" href="https://www.yaarathaemek.online/" target="_blank" rel="noopener">פתח את האתר</a>
-              <button class="btn" onclick="scrollToId('p-gallery')">קפוץ לתמונות</button>
-              <button class="btn ghost" onclick="copyText('אתר יערת העמק: דף בית + דפי כיתות, חדשות, מבחנים, מערכת שעות, סקרים, Admin לצוות, הרשאות, עדכון בזמן אמת (Firebase).')">העתק תיאור</button>
+            <div>
+              <div class="yaStats">
+                <div class="yaStat"><b>Realtime</b><span>עדכונים מיידיים בלי רענון</span></div>
+                <div class="yaStat"><b>Mobile-first</b><span>נוחות בטלפון לפני הכל</span></div>
+                <div class="yaStat"><b>Admin</b><span>צוות מעדכן תוכן לבד</span></div>
+                <div class="yaStat"><b>אבטחה</b><span>הרשאות + הפרדה ברורה</span></div>
+              </div>
+              <div class="hr"></div>
+              <div class="list">
+                <div class="li"><div class="tick"></div><div><b>מטרת המערכת</b><span>לצמצם בלגן ולרכז הכל במקום אחד.</span></div></div>
+                <div class="li"><div class="tick"></div><div><b>תוצאה</b><span>תלמידים/הורים יודעים תמיד מה קורה.</span></div></div>
+              </div>
             </div>
           </div>
         </section>
 
-        <section id="p-about" class="reveal" style="margin-top:16px">
+        <section id="ya-overview" class="reveal" style="margin-top:16px">
           <div class="grid">
             <div class="card col12">
               <div class="pad">
-                <h2 class="miniTitle">סקירה מלאה (קצרה באמת)</h2>
-                <p class="muted">מערכת מרכזית לבית ספר: יציבה, מסודרת, קלה לתפעול, ומעודכנת בזמן אמת.</p>
-
+                <h2 class="miniTitle">סקירה</h2>
+                <p class="muted">איך המערכת בנויה ומה הופך אותה ל“רצינית”.</p>
                 <div class="hr"></div>
 
-                <div class="grid" style="margin-top:0">
-                  <div class="col6">
-                    <div class="list">
-                      <div class="li"><div class="tick"></div><div><b>מבנה מערכת</b><span>דף בית, דפי כיתות, חדשות, מבחנים, מערכת שעות, סקרים ופאנל ניהול.</span></div></div>
-                      <div class="li"><div class="tick"></div><div><b>דפי כיתות</b><span>אזור “אישי” לכל כיתה עם מידע ברור ותוכן ממוקד.</span></div></div>
-                      <div class="li"><div class="tick"></div><div><b>חדשות</b><span>פרסומים לפי שכבה/כיתה עם תמונות וקישורים — קריא בדארק/לייט.</span></div></div>
+                <div class="featureGrid">
+                  <div class="feat">
+                    <div class="featCard">
+                      <div class="featTop"><div class="featIcon">⚡</div><div><b>עדכון בזמן אמת</b><p>Firestore מחובר נכון — תוכן מתעדכן מיד.</p></div></div>
+                      <p class="muted">לא צריך רענון, לא צריך “איפה ההודעה” — זה פשוט משתנה.</p>
                     </div>
                   </div>
-                  <div class="col6">
-                    <div class="list">
-                      <div class="li"><div class="tick"></div><div><b>מבחנים</b><span>רק מבחנים עתידיים + מיון תאריכים + סינון לכיתה.</span></div></div>
-                      <div class="li"><div class="tick"></div><div><b>מערכת שעות</b><span>שבועית, קריאה בעומס, מותאמת לנייד עם גלילה חכמה.</span></div></div>
-                      <div class="li"><div class="tick"></div><div><b>סקרים</b><span>הצבעה לתלמידים + ניהול לצוות + מניעת הצבעה כפולה.</span></div></div>
+                  <div class="feat">
+                    <div class="featCard">
+                      <div class="featTop"><div class="featIcon">🧭</div><div><b>ניווט ברור</b><p>דפי כיתות/אזורים עם היררכיה נכונה.</p></div></div>
+                      <p class="muted">קיצור דרך לתוכן חשוב. פחות קליקים, יותר תכלס.</p>
                     </div>
                   </div>
-                  <div class="col12">
-                    <div class="list">
-                      <div class="li"><div class="tick"></div><div><b>Admin לצוות</b><span>הוספה/עריכה של חדשות, מבחנים, מערכות שעות וסקרים — בלי ידע טכני.</span></div></div>
-                      <div class="li"><div class="tick"></div><div><b>Real-time</b><span>מחובר ל־Firebase: עדכון מיידי בלי רענון, יציב גם בעומס.</span></div></div>
-                      <div class="li"><div class="tick"></div><div><b>אבטחה והרשאות</b><span>אימות משתמשים, הפרדה בין משתמש רגיל למנהל, גישה מוגבלת לתוכן רגיש.</span></div></div>
+                  <div class="feat">
+                    <div class="featCard">
+                      <div class="featTop"><div class="featIcon">🛡️</div><div><b>הרשאות</b><p>Admin נפרד מהמשתמש הרגיל.</p></div></div>
+                      <p class="muted">תוכן רגיש מוגן. גישה מוגבלת למה שצריך.</p>
                     </div>
+                  </div>
+                </div>
 
-                    <div class="chips" style="margin-top:12px">
-                      <span class="chip" style="font-family:var(--mono)">HTML</span>
-                      <span class="chip" style="font-family:var(--mono)">CSS</span>
-                      <span class="chip" style="font-family:var(--mono)">JavaScript</span>
-                      <span class="chip" style="font-family:var(--mono)">Firebase Auth</span>
-                      <span class="chip" style="font-family:var(--mono)">Firestore</span>
-                      <span class="chip" style="font-family:var(--mono)">Realtime</span>
-                    </div>
-                  </div>
+                <div class="hr"></div>
+                <div class="chips">
+                  <span class="chip" style="font-family:var(--mono)">Firebase Auth</span>
+                  <span class="chip" style="font-family:var(--mono)">Firestore</span>
+                  <span class="chip" style="font-family:var(--mono)">Realtime</span>
+                  <span class="chip" style="font-family:var(--mono)">HTML/CSS/JS</span>
                 </div>
 
               </div>
@@ -996,23 +1127,22 @@
           </div>
         </section>
 
-        <section id="p-gallery" class="reveal" style="margin-top:16px">
+        <section id="ya-gallery" class="reveal" style="margin-top:16px">
           <div class="grid">
             <div class="card col12">
               <div class="pad">
-                <h2 class="miniTitle">תמונות מהמערכת</h2>
-                <p class="muted">טעימה מאתר יערת העמק</p>
-
+                <h2 class="miniTitle">תמונות</h2>
+                <p class="muted">תחליף לקבצים אמיתיים אצלך (או URL).</p>
                 <div class="hr"></div>
 
                 <div class="gallery">
                   <div class="shot">
                     <img src="masahbaityaara.png" alt="מסך הבית · יערת העמק" />
-                    <div class="cap"><b>מסך הבית</b><span>ניווט + עדכונים + כניסות מהירות</span></div>
+                    <div class="cap"><b>מסך הבית</b><span>עדכונים + ניווט</span></div>
                   </div>
                   <div class="shot">
-                    <img src="Dapikitot.png" alt="דף בחירת כיתות · יערת העמק" />
-                    <div class="cap"><b>בחירת כיתות</b><span>כניסה מהירה לאזור הכיתה</span></div>
+                    <img src="Dapikitot.png" alt="בחירת כיתות · יערת העמק" />
+                    <div class="cap"><b>בחירת כיתות</b><span>כניסה מהירה</span></div>
                   </div>
                 </div>
 
@@ -1021,47 +1151,32 @@
           </div>
         </section>
 
-        <section id="p-features" class="reveal" style="margin-top:16px">
+        <section id="ya-features" class="reveal" style="margin-top:16px">
           <div class="grid">
             <div class="card col12">
               <div class="pad">
                 <h2 class="miniTitle">פיצ׳רים שעושים “מערכת”</h2>
-                <p class="muted">דברים קטנים שגורמים לאנשים להגיד: וואו, זה רציני.</p>
-
+                <p class="muted">דברים שגורמים לאנשים להבין שזה לא אתר חמוד — זה מוצר.</p>
                 <div class="hr"></div>
 
-                <div class="grid" style="margin-top:0">
-                  <div class="col4">
-                    <div class="list">
-                      <div class="li"><div class="tick"></div><div><b>חיפוש חכם</b><span>למצוא חדשות/מבחנים מהר.</span></div></div>
-                      <div class="li"><div class="tick"></div><div><b>מועדפים</b><span>לשמור כיתה/דפים חשובים.</span></div></div>
-                      <div class="li"><div class="tick"></div><div><b>תצוגת “היום”</b><span>מה יש היום: עדכונים/מבחנים.</span></div></div>
-                    </div>
-                  </div>
-
-                  <div class="col4">
-                    <div class="list">
-                      <div class="li"><div class="tick"></div><div><b>ספירה לאחור</b><span>עד למבחן הקרוב.</span></div></div>
-                      <div class="li"><div class="tick"></div><div><b>נגישות</b><span>קריאות גבוהה במסכים קטנים.</span></div></div>
-                      <div class="li"><div class="tick"></div><div><b>מובייל</b><span>גלילה חכמה בטבלאות.</span></div></div>
-                    </div>
-                  </div>
-
-                  <div class="col4">
-                    <div class="list">
-                      <div class="li"><div class="tick"></div><div><b>Dark/Light</b><span>מצב כהה/בהיר עקבי.</span></div></div>
-                      <div class="li"><div class="tick"></div><div><b>מודולרי</b><span>קל להוסיף אזורים.</span></div></div>
-                      <div class="li"><div class="tick"></div><div><b>אנליטיקות</b><span>מה הכי נצפה (אופציונלי).</span></div></div>
-                    </div>
-                  </div>
+                <div class="featureGrid">
+                  <div class="feat"><div class="featCard">
+                    <div class="featTop"><div class="featIcon">📰</div><div><b>חדשות</b><p>פוסטים עם תמונות, תיוגים והפרדה.</p></div></div>
+                    <p class="muted">קריא בדארק/לייט, נוח לתלמידים ולהורים.</p>
+                  </div></div>
+                  <div class="feat"><div class="featCard">
+                    <div class="featTop"><div class="featIcon">📅</div><div><b>מבחנים</b><p>מיון עתידיים + סינון לכיתה.</p></div></div>
+                    <p class="muted">שקט נפשי: יודעים מה קרוב ומה לא.</p>
+                  </div></div>
+                  <div class="feat"><div class="featCard">
+                    <div class="featTop"><div class="featIcon">🗳️</div><div><b>סקרים</b><p>הצבעה + ניהול + מניעת כפילות.</p></div></div>
+                    <p class="muted">פיצ׳ר שמרגיש “מערכת אמיתית”.</p>
+                  </div></div>
                 </div>
 
                 <div class="footer">
-                  <div>קישור לאתר: <a class="pill primary" href="https://www.yaarathaemek.online/" target="_blank" rel="noopener">www.yaarathaemek.online</a></div>
-                  <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center">
-                    <span style="font-family:var(--mono)">yarataemek By Peretzinho</span>
-                    <a class="pill" href="#home">חזרה</a>
-                  </div>
+                  <div>קישור: <a class="pill primary" href="https://www.yaarathaemek.online/" target="_blank" rel="noopener">yaarathaemek.online</a></div>
+                  <a class="pill" href="#home" data-route>חזרה לבית</a>
                 </div>
 
               </div>
@@ -1074,33 +1189,55 @@
 
     <div class="toast" id="toast">הועתק ✅</div>
 
-    <!-- Floating CTA -->
     <div class="floatCTA">
-      <button class="fab" onclick="go('order')">
+      <button class="fab green" id="ctaBtn">
         <span class="ic">⚡</span>
         הזמנת אתר
       </button>
-      <!-- ✨ NEW: back-to-top -->
-      <button class="fab" id="topBtn" style="display:none" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <button class="fab" id="topBtn" style="display:none">
         <span class="ic">↑</span>
         למעלה
       </button>
     </div>
   </div>
+<footer class="ptz-footer">
+  <div class="ptz-footer-inner">
+
+    <div class="ptz-brand">
+      <div class="ptz-brandText">
+        <div class="ptz-title">Peretzinho</div>
+        <div class="ptz-sub">נדב פרץ · בניית אתרים ומערכות</div>
+      </div>
+
+      <!-- LOGO IMAGE -->
+      <div class="ptz-logoWrap" aria-hidden="true">
+        <img class="ptz-logoImg" src="peretzinho.png" alt="Peretzinho logo" />
+      </div>
+    </div>
+
+    <nav class="ptz-links" aria-label="קישורים תחתונים">
+      <a href="#home">בית</a>
+      <a href="#projects">פרויקטים</a>
+      <a href="#order">יערת העמק</a>
+      <a href="#order">הזמנת אתר</a>
+    </nav>
+
+    <div class="ptz-copy">
+      <span class="ptz-mono">Peretzinho</span> · All rights reserved © <span id="ptzYear"></span>
+    </div>
+
+  </div>
+</footer>
+
 
   <script>
-    // mark JS available (for reveal animation)
     document.body.setAttribute("data-js","1");
 
-    // ======================
-    // Theme toggle (Sun/Moon)
-    // ======================
+    // ===== Theme (sync both buttons)
     const THEME_KEY = "peretzinho_theme";
     const root = document.documentElement;
-
     const themeBtn = document.getElementById("themeBtn");
     const themeIcon = document.getElementById("themeIcon");
-
     const themeBtn2 = document.getElementById("themeBtn2");
     const themeIcon2 = document.getElementById("themeIcon2");
 
@@ -1109,18 +1246,14 @@
       const ic = (t === "light") ? "☀️" : "🌙";
       if(themeIcon) themeIcon.textContent = ic;
       if(themeIcon2) themeIcon2.textContent = ic;
-
       const meta = document.querySelector('meta[name="theme-color"]');
-      if(meta) meta.setAttribute("content", t === "light" ? "#f7f8fc" : "#0b1020");
+      if(meta) meta.setAttribute("content", t === "light" ? "#F7F8FC" : "#0B1020");
     }
-
     function initTheme(){
       const saved = localStorage.getItem(THEME_KEY);
       const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-      const t = saved || (prefersLight ? "light" : "dark");
-      applyTheme(t);
+      applyTheme(saved || (prefersLight ? "light" : "dark"));
     }
-
     function toggleTheme(){
       const current = root.getAttribute("data-theme") || "dark";
       const next = current === "dark" ? "light" : "dark";
@@ -1128,71 +1261,126 @@
       applyTheme(next);
       toast(next === "light" ? "Light Mode ☀️" : "Dark Mode 🌙");
     }
-
     themeBtn?.addEventListener("click", toggleTheme);
     themeBtn2?.addEventListener("click", toggleTheme);
 
-    // ======================
-    // Router (single file)
-    // ======================
+    // ===== Drawer (build per view)
+    const drawer = document.getElementById("drawer");
+    const drawerBack = document.getElementById("drawerBack");
+    const menuBtn = document.getElementById("menuBtn");
+    const menuBtn2 = document.getElementById("menuBtn2");
+    const closeMenu = document.getElementById("closeMenu");
+    const drawerLinks = document.getElementById("drawerLinks");
+    const drawerTitle = document.getElementById("drawerTitle");
+    const drawerSub = document.getElementById("drawerSub");
+
+    function openDrawer(){
+      drawerBack.classList.add("on");
+      drawer.classList.add("on");
+      drawer.setAttribute("aria-hidden","false");
+      document.body.style.overflow = "hidden";
+    }
+    function closeDrawer(){
+      drawerBack.classList.remove("on");
+      drawer.classList.remove("on");
+      drawer.setAttribute("aria-hidden","true");
+      document.body.style.overflow = "";
+    }
+    closeMenu?.addEventListener("click", closeDrawer);
+    drawerBack?.addEventListener("click", closeDrawer);
+    document.addEventListener("keydown", (e)=>{ if(e.key==="Escape") closeDrawer(); });
+
+    function setDrawer(items, title, sub){
+      drawerLinks.innerHTML = items.map(x => `<a href="${x.href}" ${x.route ? 'data-route="1"' : ""} data-close>${x.label}</a>`).join("");
+      drawerTitle.textContent = title;
+      drawerSub.textContent = sub;
+      drawer.querySelectorAll("[data-close]").forEach(a=>{
+        a.addEventListener("click", ()=>{ closeDrawer(); if(a.dataset.route) {/* let router handle */} });
+      });
+    }
+
+    menuBtn?.addEventListener("click", ()=>{
+      setDrawer(
+        [
+          {label:"בית", href:"#home"},
+          {label:"פרויקטים", href:"#projects"},
+          {label:"יערת העמק", href:"#yarataemek", route:true},
+          {label:"הזמנת אתר", href:"#order"},
+          {label:"צור קשר", href:"#contact"},
+        ],
+        "Peretzinho",
+        "נדב פרץ · בניית אתרים ומערכות"
+      );
+      openDrawer();
+    });
+
+    menuBtn2?.addEventListener("click", ()=>{
+      setDrawer(
+        [
+          {label:"פתיחה", href:"#yarataemek"},
+          {label:"סקירה", href:"#ya-overview"},
+          {label:"תמונות", href:"#ya-gallery"},
+          {label:"פיצ׳רים", href:"#ya-features"},
+          {label:"חזרה לבית", href:"#home", route:true},
+        ],
+        "אתר יערת העמק",
+        "מערכת דיגיטלית לבית ספר"
+      );
+      openDrawer();
+    });
+
+    // ===== Views (Router)
     const homeView = document.getElementById("view-home");
-    const yView = document.getElementById("view-yarataemek");
+    const yaView = document.getElementById("view-ya");
 
     function setTitle(route){
-      document.title = route === "yarataemek" ? "אתר יערת העמק · Peretzinho" : "Peretzinho · נדב פרץ";
+      document.title = (route === "ya") ? "אתר יערת העמק · Peretzinho" : "Peretzinho · נדב פרץ";
     }
 
     function show(route){
-      if(route === "yarataemek"){
+      if(route === "ya"){
         homeView.classList.add("hidden");
-        yView.classList.remove("hidden");
+        yaView.classList.remove("hidden");
       }else{
-        yView.classList.add("hidden");
+        yaView.classList.add("hidden");
         homeView.classList.remove("hidden");
       }
       setTitle(route);
       revealNow();
+      closeDrawer();
     }
 
-    function normalizeHash(){
+    function parseHash(){
       const h = (location.hash || "#home").replace("#","").trim();
-      if(h === "" || h === "home" || h === "projects" || h === "order" || h === "contact") {
-        return {route:"home", anchor: (h === "home" ? "" : h)};
-      }
-      if(h === "yarataemek" || h === "p-about" || h === "p-gallery" || h === "p-features") {
-        return {route:"yarataemek", anchor: (h === "yarataemek" ? "" : h)};
-      }
-      return {route:"home", anchor:""};
+      // home anchors
+      if(["home","projects","order","contact"].includes(h)) return {route:"home", anchor:h};
+      // ya anchors + route
+      if(["yarataemek","ya-overview","ya-gallery","ya-features"].includes(h)) return {route:"ya", anchor:h};
+      return {route:"home", anchor:"home"};
     }
 
-    function go(where){
-      if(where === "projects") location.hash = "#projects";
-      else if(where === "order") location.hash = "#order";
-      else if(where === "contact") location.hash = "#contact";
-      else if(where === "yarataemek") location.hash = "#yarataemek";
-      else location.hash = "#home";
-    }
-
-    function scrollToId(id){
-      const el = document.getElementById(id);
+    function scrollToAnchor(anchor){
+      const el = document.getElementById(anchor);
       if(!el) return;
       el.scrollIntoView({behavior:"smooth", block:"start"});
     }
 
     function handleRoute(){
-      const {route, anchor} = normalizeHash();
+      const {route, anchor} = parseHash();
       show(route);
-      if(anchor){
-        setTimeout(()=> scrollToId(anchor), 40);
-      }else{
-        window.scrollTo({top:0, behavior:"auto"});
-      }
+      // slight delay so view is visible
+      setTimeout(()=> scrollToAnchor(anchor), 40);
     }
     window.addEventListener("hashchange", handleRoute);
 
-    // ======================
-    // Reveal animation
-    // ======================
+    // data-route links (force view)
+    document.addEventListener("click", (e)=>{
+      const a = e.target.closest("[data-route]");
+      if(!a) return;
+      // leave hash as-is, router handles view by hash
+    });
+
+    // ===== Reveal
     const revealObserver = new IntersectionObserver((entries)=>{
       for(const en of entries){
         if(en.isIntersecting){
@@ -1208,17 +1396,38 @@
       });
     }
 
-    // ======================
-    // Mail order form
-    // ======================
+    // ===== Toast + Copy
+    const toastEl = document.getElementById("toast");
+    function toast(msg){
+      if(!toastEl) return;
+      toastEl.textContent = msg;
+      toastEl.classList.add("show");
+      clearTimeout(toastEl._t);
+      toastEl._t = setTimeout(()=>toastEl.classList.remove("show"), 1200);
+    }
+    async function copyText(text){
+      try{
+        await navigator.clipboard.writeText(text);
+        toast("הועתק ✅");
+      }catch(e){
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        ta.remove();
+        toast("הועתק ✅");
+      }
+    }
+    window.copyText = copyText;
+
+    // ===== Order mailto
     const ORDER_EMAIL = "PTZatarim@gmail.com";
     function getCheckedValues(form, name){
       return [...form.querySelectorAll(`input[name="${name}"]:checked`)].map(x=>x.value);
     }
     function buildMailto(subject, body){
-      const s = encodeURIComponent(subject);
-      const b = encodeURIComponent(body);
-      return `mailto:${ORDER_EMAIL}?subject=${s}&body=${b}`;
+      return `mailto:${ORDER_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     }
     function orderDemoFill(){
       const f = document.getElementById("orderForm");
@@ -1232,70 +1441,31 @@
       f.deadline.value = "שבועיים-שלושה";
       f.refs.value = "https://www.yaarathaemek.online/";
       [...f.querySelectorAll('input[name="style"]')].forEach(cb=>{
-        cb.checked = ["נקי ומודרני","דארק/לייט","אנימציות עדינות"].includes(cb.value);
+        cb.checked = ["נקי ומודרני","דארק/לייט","אנימציות עדינות","דף ניהול"].includes(cb.value);
       });
       toast("מילאתי דוגמה ✅");
     }
     window.orderDemoFill = orderDemoFill;
 
-    // ======================
-    // ✨ NEW: Order UX (2+3) + safe details
-    // - status text
-    // - auto close after submit
-    // - close when press ESC
-    // - open when hash #order
-    // ======================
-    const orderAcc = document.getElementById("orderAcc");
-    const orderStatus = document.getElementById("orderStatus");
-    const orderForm = document.getElementById("orderForm");
-    const sendBtn = document.getElementById("sendBtn");
-
-    function setOrderStatus(t){ if(orderStatus) orderStatus.textContent = t || ""; }
-    function closeOrderAcc(){
-      if(orderAcc) orderAcc.open = false;
-      setOrderStatus("✅ נפתח מייל להזמנה");
-    }
-    function openOrderAcc(){
-      if(orderAcc) orderAcc.open = true;
-      setOrderStatus("מלאו פרטים ⬇️");
-    }
-
-    orderForm?.addEventListener("input", ()=>{
-      setOrderStatus("⏳ ממלאים הזמנה…");
-    });
-
-    document.addEventListener("keydown",(e)=>{
-      if(e.key === "Escape" && orderAcc?.open){
-        orderAcc.open = false;
-        setOrderStatus("");
-        toast("נסגר ✅");
-      }
-    });
-
-    // prevent submit double click
     let submitting = false;
+    document.getElementById("orderForm")?.addEventListener("submit", (e)=>{
+      e.preventDefault();
+      if(submitting) return;
+      submitting = true;
 
-    document.addEventListener("DOMContentLoaded", ()=>{
-      const form = document.getElementById("orderForm");
-      if(form){
-        form.addEventListener("submit", (e)=>{
-          e.preventDefault();
-          if(submitting) return;
-          submitting = true;
-          if(sendBtn) sendBtn.disabled = true;
+      const form = e.currentTarget;
+      const name = form.name.value.trim();
+      const phone = form.phone.value.trim();
+      const email = form.email.value.trim();
+      const type = form.type.value;
+      const pages = form.pages.value.trim();
+      const styles = getCheckedValues(form, "style");
+      const budget = form.budget.value;
+      const deadline = form.deadline.value.trim();
+      const refs = form.refs.value.trim();
 
-          const name = form.name.value.trim();
-          const phone = form.phone.value.trim();
-          const email = form.email.value.trim();
-          const type = form.type.value;
-          const pages = form.pages.value.trim();
-          const styles = getCheckedValues(form, "style");
-          const budget = form.budget.value;
-          const deadline = form.deadline.value.trim();
-          const refs = form.refs.value.trim();
-
-          const subject = `הזמנת אתר · ${name} · ${type}`;
-          const body =
+      const subject = `הזמנת אתר · ${name} · ${type}`;
+      const body =
 `היי נדב (Peretzinho),
 אני רוצה להזמין אתר.
 
@@ -1318,72 +1488,36 @@ ${refs || "-"}
 
 תודה!`;
 
-          toast("פותח מייל… ✉️");
-          setTimeout(()=>{
-            window.location.href = buildMailto(subject, body);
-            // close after opening mail (best effort)
-            setTimeout(()=> {
-              if(orderAcc) orderAcc.open = false;
-              if(sendBtn) sendBtn.disabled = false;
-              submitting = false;
-              setOrderStatus("✅ נפתח מייל להזמנה");
-            }, 600);
-          }, 200);
-        });
-      }
-
-      initTheme();
-      handleRoute();
-      revealNow();
-
-      // ✨ NEW: local perf badge (time to DOMContentLoaded)
-      const perf = Math.max(0, Math.round(performance.now()));
-      const perfEl = document.getElementById("perfBadge");
-      if(perfEl) perfEl.textContent = String(perf);
-
-      // ✨ NEW: open order if landing on #order
-      const {route, anchor} = normalizeHash();
-      if(route === "home" && anchor === "order") openOrderAcc();
+      toast("פותח מייל… ✉️");
+      setTimeout(()=>{
+        window.location.href = buildMailto(subject, body);
+        setTimeout(()=>{ submitting = false; }, 700);
+      }, 200);
     });
 
-    // ======================
-    // Copy + toast
-    // ======================
-    const toastEl = document.getElementById("toast");
-    function toast(msg){
-      if(!toastEl) return;
-      toastEl.textContent = msg;
-      toastEl.classList.add("show");
-      clearTimeout(toastEl._t);
-      toastEl._t = setTimeout(()=>toastEl.classList.remove("show"), 1200);
-    }
+    // ===== Floating CTA
+    const ctaBtn = document.getElementById("ctaBtn");
+    ctaBtn.addEventListener("click", ()=>{
+      // always go order on home view
+      location.hash = "#order";
+    });
 
-    async function copyText(text){
-      try{
-        await navigator.clipboard.writeText(text);
-        toast("הועתק ✅");
-      }catch(e){
-        const ta = document.createElement("textarea");
-        ta.value = text;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand("copy");
-        ta.remove();
-        toast("הועתק ✅");
-      }
-    }
-    window.copyText = copyText;
-    window.go = go;
-    window.scrollToId = scrollToId;
-
-    // ======================
-    // ✨ NEW: Back-to-top button appears on scroll
-    // ======================
+    // ===== Back-to-top
     const topBtn = document.getElementById("topBtn");
+    topBtn.addEventListener("click", ()=> window.scrollTo({top:0, behavior:"smooth"}));
     window.addEventListener("scroll", ()=>{
-      if(!topBtn) return;
-      topBtn.style.display = (window.scrollY > 600) ? "flex" : "none";
+      topBtn.style.display = (window.scrollY > 700) ? "flex" : "none";
     }, {passive:true});
+
+    // init
+    document.getElementById("year").textContent = new Date().getFullYear();
+    (function initTheme(){
+      const saved = localStorage.getItem(THEME_KEY);
+      const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+      applyTheme(saved || (prefersLight ? "light" : "dark"));
+    })();
+    handleRoute();
+    revealNow();
   </script>
 </body>
 </html>
